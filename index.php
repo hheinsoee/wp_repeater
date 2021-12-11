@@ -1,46 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style/index.css">
     <meta name="referrer" content="never">
 </head>
+
 <body>
 
-<?php
-// header('Content-Type: application/json; charset=utf-8');
+    <?php
+    // header('Content-Type: application/json; charset=utf-8');
 
-include 'get.php';
-$data = array(
-    '_fields' => 'id,author,excerpt,content,title,link,date,_links',
-);
-//getIt('/posts/11689',$data);
-$theJson = json_decode(getIt('/posts/11484', $data), true);
-$thecontent = $theJson['content']['rendered'];
+    function test_input($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
 
-$doc = new DOMDocument();
-$doc->loadHTML($thecontent);
-$selector = new DOMXPath($doc);
+    include 'get.php';
+    include './component/nav.php';
+    if (isset($_REQUEST['page'])) {
+        $page = test_input($_REQUEST['page']);
+        switch ($page) {
+            case 'genres':
+                $genres = @$_REQUEST['id'];
 
-$result = $selector->query('//div[@data-item]');
+                if (is_numeric($genres)) { //ဂဏန်းဖြစ်ရမည် int ဖြစ်စရာမလို
+                    include './pages/archives.php';
+                    archives($genres);
+                } else {
+                    echo 'invalid id';
+                }
+                break;
 
-// loop through all found items
-foreach ($result as $node) {
-    $d = $node->getAttribute('data-item');
-    $v_link = json_decode($d, true)['sources'][0]['src'];
-    $p_link = json_decode($d, true)['splash'];
-?>
-    <video poster="<?=$p_link;?>" controls>
-        <source src="<?=$v_link;?>" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <a href="<?=$v_link;?>" download="download">Download</a>
-<?php
-}
+            default:
+                if (is_numeric($page)) { //ဂဏန်းဖြစ်ရမည် int ဖြစ်စရာမလို
+                    include './pages/single.php';
+                    videoPage($page);
+                } else {
+                    echo 'not found';
+                }
+                break;
+        }
+    } else {
+        include './pages/archives.php';
+        archives();
+    }
+    // include './pages/single.php';
 
-?>
+
+
+
+    ?>
 
 </body>
+
 </html>
