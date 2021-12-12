@@ -30,10 +30,11 @@
         switch ($page) {
             case 'genres':
                 $genres = @$_REQUEST['id'];
+                $p = @$_REQUEST['p'];
 
                 if (is_numeric($genres)) { //ဂဏန်းဖြစ်ရမည် int ဖြစ်စရာမလို
                     include './pages/archives.php';
-                    archives($genres);
+                    archives($genres,$p);
                 } else {
                     echo 'invalid id';
                 }

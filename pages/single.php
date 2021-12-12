@@ -2,7 +2,7 @@
 function videoPage($id)
 {
     $data = array(
-        '_fields' => 'id,author,excerpt,content,title,link,date,_links',
+        '_fields' => 'id,author,excerpt,content,title,link,date,_links,yoast_head_json',
     );
     //getIt('/posts/11689',$data);
     $theJson = json_decode(getIt("/posts/{$id}", $data), true);
@@ -13,37 +13,58 @@ function videoPage($id)
     $doc->loadHTML($thecontent);
     $selector = new DOMXPath($doc);
 
-    $result = $selector->query('//div[@data-item]');
-    // print_r($theJson );
-    // loop through all found items
-    foreach ($result as $node) {
-        $d = $node->getAttribute('data-item');
-        $v_link = json_decode($d, true)['sources'][0]['src'];
-        $p_link = json_decode($d, true)['splash'];
+    // way 1
+    if (count($selector->query('//div[@data-item]')) > 0) {
+        $result = $selector->query('//div[@data-item]');
+        // loop through all found items
+        foreach ($result as $node) {
+            $d = $node->getAttribute('data-item');
+            $v_link = json_decode($d, true)['sources'][0]['src'];
+            $p_link = json_decode($d, true)['splash'];
+            videoplayer($p_link, $v_link, $theJson);
+        }
+    } else {
+        $result = $selector->query("//a[@href]");
+        foreach ($result as $node) {
+            $link = $node->getAttribute('href');
+            //if (str_contains('How are you', 'are'))
+            //if (preg_match('/\bare\b/', $a)
+            //$search = 'are y';
+            //if(preg_match("/{$search}/i", $a))
+            if (strpos($link, 'mdrive.b-cdn.net') !== false) {
+                $v_link = $node->getAttribute('href');
+                $p_link = @$theJson['yoast_head_json']['og_image']===null?$theJson['yoast_head_json']['twitter_image']:$theJson['yoast_head_json']['og_image'][0]['url'];
+                videoplayer($p_link, $v_link, $theJson);
+            }
+        }
+    }
+};
+
+function videoplayer($p_link, $v_link, $theJson)
+{
 ?>
-        <div style="
+    <div style="
         background-image:url(<?= $p_link ?>);
         background-position: center;
         background-size: cover;
         background-attachment: fixed;
         ">
-            <div style="
+        <div style="
             min-height:100vh;
             background-color:rgba(0, 0, 0, 0.6);
             backdrop-filter:blur(15px);
             display:flex;
             align-items:center">
-                <div class="container">
-                    <video poster="<?= $p_link; ?>" controls>
-                        <source src="<?= $v_link; ?>" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <a class="download" href="<?= $v_link; ?>" download="download">Download</a>
-                    <h1><?= $theJson['title']['rendered']; ?></h1>
-                </div>
+            <div class="container page" >
+                <video poster="<?= $p_link; ?>" controls>
+                    <source src="<?= $v_link; ?>" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <!-- <a class="download" href="<?//= $v_link; ?>" download>Download</a> -->
+                <h1><?= $theJson['title']['rendered']; ?></h1>
             </div>
         </div>
+    </div>
 <?php
-    }
-};
+}
 ?>
