@@ -3,6 +3,7 @@
 ///posts?categories=7&orderby=date&per_page=9&_fields=author,id,excerpt,title,link,date,_links
 
 include './videobg.php';
+theNav();
 function archives($genres=null,$page=1)
 {
     $data = array(

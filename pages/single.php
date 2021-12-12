@@ -34,13 +34,6 @@ function videoPage($id)
             if (strpos($link, 'mdrive.b-cdn.net') !== false) {
                 $v_link = $node->getAttribute('href');
                 $p_link = @$theJson['yoast_head_json']['og_image']===null?$theJson['yoast_head_json']['twitter_image']:$theJson['yoast_head_json']['og_image'][0]['url'];
-                
-                head_Tag(
-                    $theJson['title']['rendered'],
-                    strip_tags($theJson['excerpt']['rendered']),
-                    $p_link,
-                    "?page={$theJson['id']}",
-                    'video');
                 videoplayer($p_link, $v_link, $theJson);
             }
         }
@@ -49,6 +42,13 @@ function videoPage($id)
 
 function videoplayer($p_link, $v_link, $theJson)
 {
+    head_Tag(
+        $theJson['title']['rendered'],
+        strip_tags($theJson['excerpt']['rendered']),
+        $p_link,
+        "?page={$theJson['id']}",
+        'video');
+        theNav();
 ?>
     <div style="
         background-image:url(<?= $p_link ?>);

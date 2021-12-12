@@ -12,19 +12,20 @@
 
     include 'get.php';
     include './head.php';
+    include './component/nav.php';
 
     if (isset($_REQUEST['page'])) {
         $page = test_input($_REQUEST['page']);
         switch ($page) {
             case 'genres':
+                include './pages/archives.php';
                 $genres = @$_REQUEST['id'];
                 $p = @$_REQUEST['p'];
 
                 if (is_numeric($genres)) { //ဂဏန်းဖြစ်ရမည် int ဖြစ်စရာမလို
-                    include './pages/archives.php';
                     archives($genres,$p);
                 } else {
-                    echo 'invalid id';
+                    archives();
                 }
                 break;
 
