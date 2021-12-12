@@ -1,13 +1,17 @@
 :root {
     --nav-height: 50px;
 }
-body{
-    font-family:'arial';margin:0;
-    background-color:#000000;
-    color:#ccc;
-    }
-a{text-decoration:none;color: inherit;}
-.container{
+body {
+    font-family: "arial";
+    margin: 0;
+    background-color: #000000;
+    color: #ccc;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+.container {
     max-width: 1200px;
     margin: auto;
 }
@@ -16,50 +20,62 @@ a{text-decoration:none;color: inherit;}
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.pxy{padding:10px;}
-.px{padding:0px 10px;}
-.thumbnail{
-    display:inline-block;
-    height:200px;
-    width:200px;
+.pxy {
+    padding: 10px;
+}
+.px {
+    padding: 0px 10px;
+}
+
+.thumbnail_container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px 10px 20px 0px;
+}
+.thumbnail {
+    flex: 1;
+    display: inline-block;
+    min-width: 25%;
+    /* width:200px; @media only screen and (max-width: 600px) */
     margin: 15px 0px 0px 10px;
 }
-.thumbnail img{
-    height:200px;
-    width:inherit;
-    object-fit:cover;
-    object-position:center;
+.thumbnail img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
-
-video{
+video {
     max-width: 100%;
-    width:900px;
-    
+    width: 900px;
 }
-video[poster]{
-    max-height: 500px;max-width:100%;object-fit:cover;
-    }
+video[poster] {
+    max-height: 500px;
+    max-width: 100%;
+    object-fit: cover;
+}
 
-ul.nav{
-    list-style:none;
-    margin:0;
-    padding:0;
-    display:flex;
+ul.nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
     position: fixed;
     left: 0;
     background: linear-gradient(180deg, black, transparent);
     right: 0;
     height: var(--nav-height);
     z-index: 1;
+    overflow-x:auto;
 }
-.page{
+.page {
     padding-top: var(--nav-height);
 }
-ul.nav li{
-    margin:5px 10px;
+ul.nav li {
+    margin: 5px 10px;
 }
-.download{
+.download {
     left: 0;
     background-color: #000;
     /* bottom: 0; */
@@ -68,13 +84,25 @@ ul.nav li{
     padding: 4px;
     right: 0;
 }
-.pagBtn{
-    background-color:#666;
-    padding:3px;
-    border-radius:5px;
-    margin:3px;
+.pagBtn {
+    background-color: #666;
+    padding: 3px;
+    border-radius: 5px;
+    margin: 3px;
     display: inline-block;
 }
-.pagBtn.active{
-    background-color:#de7700;
+.pagBtn.active {
+    background-color: #de7700;
+}
+
+@media only screen and (max-width: 800px) {
+    .thumbnail {
+        min-width: 30%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .thumbnail {
+        min-width: 45%;
+    }
 }

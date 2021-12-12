@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style/index.css">
-    <meta name="referrer" content="never">
-</head>
-
-<body>
 
     <?php
     // header('Content-Type: application/json; charset=utf-8');
@@ -24,7 +11,8 @@
     }
 
     include 'get.php';
-    include './component/nav.php';
+    include './head.php';
+
     if (isset($_REQUEST['page'])) {
         $page = test_input($_REQUEST['page']);
         switch ($page) {
@@ -54,12 +42,7 @@
         archives();
     }
     // include './pages/single.php';
-
-
-
-
-    ?>
-
+?>
 </body>
 
 </html>
