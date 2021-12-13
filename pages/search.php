@@ -9,7 +9,7 @@ function search($search = null, $page = 1)
         'search' => $search,
         // 'type'=> 'post',
         // // 'orderby' => 'date', search တွင်လုံးဝနသုံးသင့်
-        // 'per_page' => 20,
+        'per_page' => 20,
         // 'page' => is_int($page)&&$page>0?$page:1,
         // '_fields' => 'id,author,excerpt,content,title,link,date,jetpack_featured_media_url,yoast_head_json', //_links
     );
@@ -23,19 +23,27 @@ function search($search = null, $page = 1)
         "?search={$search}",
         'website'
     );
-    nav(genresArray());
+
+    include './component/search.php';
     include './component/videobg.php';
 ?>
-    <div class="container page ">
-        <div class="thumbnail_container">
-            <ol>
-                <?php
-                foreach ($theJson as $d) {
-                ?><li><a class="" href="?page=<?= $d['id']; ?>" title="<?= $d['title']; ?>"><?= $d['title']; ?></a></li>
-                <?php
-                }
-                ?>
-            </ol>
+    <div class="archivePage">
+        <div>
+            <?php
+            nav(genresArray());
+            ?>
+        </div>
+        <div class="container page ">
+            <div class="thumbnail_container">
+                <ol>
+                    <?php
+                    foreach ($theJson as $d) {
+                    ?><li><a class="" href="?page=<?= $d['id']; ?>" title="<?= $d['title']; ?>"><?= $d['title']; ?></a></li>
+                    <?php
+                    }
+                    ?>
+                </ol>
+            </div>
         </div>
     </div>
 <?php

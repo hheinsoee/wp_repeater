@@ -5,13 +5,11 @@ function archives($genres = null, $page = 1)
         'categories' => $genres,
         'orderby' => 'date',
         'per_page' => 20,
-        'page' => is_int($page) && $page > 0 ? $page : 1,
-        '_fields' => 'id,author,excerpt,content,title,link,date,jetpack_featured_media_url,yoast_head_json', //_links
+        'page' => is_numeric($page) && $page > 0 ? $page : 1,
+        '_embed'=>'wp:featuredmedia',
+        '_fields' => 'id,content,title,jetpack_featured_media_url,yoast_head_json,_links,_embedded', //_links,author,excerpt,link,date,
     );
     $theJson = json_decode(getIt("/posts", $data), true);
-
-
-
 
 
 
@@ -27,7 +25,8 @@ function archives($genres = null, $page = 1)
 
     include './component/videobg.php';
     include './component/thumbnail.php';
-?>
+    
+    include './component/search.php';?>
     <div class="archivePage">
         <div>
             <?php

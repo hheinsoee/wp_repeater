@@ -4,22 +4,21 @@
 function nav($theJson){
     $blackList= array();
     ?>
-    <nav class="nav ">
+    <div class="genresMenu">
         <div class="container">
         <ul>
-            <li><a class="navLink nowrap" href="?" title="home">Home</a></li>
             <?php
         foreach ($theJson as $key) {            
             $active = isset($_REQUEST['page'])&&$_REQUEST['page']=='genres'&&isset($_REQUEST['id'])&&$_REQUEST['id']==$key['id']?" active " :"";
             if($key['count']>0&&!in_array($key['id'], $blackList)){
             ?><li>
-                <a class="navLink nowrap <?=$active;?>" href="?page=genres&id=<?= $key['id']; ?>" title="<?=$key['count'];?>"><?= $key['name'];?></a>
+                <a class="genresMenuLink nowrap <?=$active;?>" href="?page=genres&id=<?= $key['id']; ?>" title="<?=$key['count'];?>"><?= $key['name'];?></a>
             </li><?php
             }
         }
         ?></ul>
         </div>
-    </nav>
+    </div>
     <?php 
     }
 

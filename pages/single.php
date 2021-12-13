@@ -63,13 +63,8 @@ function videoplayer($p_link, $v_link, $theJson)
         background-size: cover;
         background-attachment: fixed;
         ">
-        <div style="
-            min-height:100vh;
-            background-color:rgba(0, 0, 0, 0.6);
-            backdrop-filter:blur(4px);
-            display:flex;
-            align-items:center">
-            <div class="container page">
+        <div class="playerContainer">
+            <div>
                 <?php
                 if ($v_link === null) {
                     echo $theJson['content']['rendered'];
@@ -81,7 +76,7 @@ function videoplayer($p_link, $v_link, $theJson)
                 <?php } ?>
                 <!-- <a class="download" href="<? //= $v_link; 
                                                 ?>" download>Download</a> -->
-                <h1><?= $theJson['title']['rendered']; ?></h1>
+                <h1 class="pxy"><?= $theJson['title']['rendered']; ?></h1>
             </div>
         </div>
     </div>
