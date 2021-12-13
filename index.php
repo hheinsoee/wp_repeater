@@ -13,12 +13,11 @@
     include 'get.php';
     include './head.php';
     include './component/nav.php';
-    theNav();
+    // theNav();
     if (isset($_REQUEST['page'])) {
         $page = test_input($_REQUEST['page']);
         switch ($page) {
             case 'genres':
-                ?><div class="container page "><div class="thumbnail_container"><?php
                 include './pages/archives.php';
                 $genres = test_input(@$_REQUEST['id']);
                 $p = test_input(@$_REQUEST['p']);
@@ -28,7 +27,6 @@
                 } else {
                     archives();
                 }
-                ?></div></div><?php
                 break;
             default:
                 if (is_numeric($page)) { //ဂဏန်းဖြစ်ရမည် int ဖြစ်စရာမလို
@@ -50,10 +48,7 @@
         //home
         include './pages/archives.php';
         
-    ?><div class="container page "><div class="thumbnail_container"><?php
         archives(null,1);
-        archives(null,2);
-        ?></div></div><?php
     }
     // include './pages/single.php';
 ?>
