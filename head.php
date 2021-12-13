@@ -7,7 +7,7 @@
         <link rel="icon" href="/heinsoe.ico" />
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=no" />
 
-        <link rel="stylesheet" href="style/index.css">
+        <link rel="stylesheet" href="<?=rootDir();?>/style/index.css">
         <meta name="referrer" content="never">
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120150821-4"></script>

@@ -8,5 +8,5 @@
     object-fit: cover;
     filter: blur(4px) brightness(0.6);
     " autoplay muted loop>
-    <source src="./videoplaybackjw.mp4" type="video/mp4">
+    <source src="<?=rootDir();?>/videoplaybackjw.mp4" type="video/mp4">
 </video>

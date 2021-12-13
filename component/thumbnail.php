@@ -10,7 +10,7 @@ function thumbnail($d)
     ?$d['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['thumbnail']['source_url']
     :$d['jetpack_featured_media_url'];
 ?>
-    <a class="thumbnail" href="?page=<?= $d['id']; ?>" title="<?= $d['title']['rendered']; ?>">
+    <a class="thumbnail" href="<?=rootDir();?>/<?= $d['id']; ?>" title="<?= $d['title']['rendered']; ?>">
         <img src="<?= $img; ?>" alt="<?= $d['title']['rendered']; ?>" loading="lazy">
         <div class="title nowrap"><?= $d['title']['rendered']; ?></div>
     </a>

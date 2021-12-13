@@ -1,7 +1,7 @@
 :root {
     --nav-height: 50px;
     --theme-color: #de7700;
-    --theme-color_tr: #de76005d;
+    --theme-color_tr: #0000005d;
     /* font-size */
     --font-size-s: 10pt;
     --font-size-n: 12pt;
@@ -280,7 +280,7 @@ input[type="checkbox"] + label {
     .genresMenu {
         position: fixed;
         left: 0;
-        background: linear-gradient(180deg, black, transparent);
+        background: linear-gradient(180deg, var(--theme-color_tr), transparent);
         right: 0;
         top: var(--nav-height);
         z-index: 1;

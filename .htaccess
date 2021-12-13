@@ -1,9 +1,15 @@
-RewriteEngine on
+RewriteEngine On
 
-RewriteCond %{REQUEST_FILENAME}  -d
-RewriteRule  ^.*$  -  [L]
+# RewriteCond %{REQUEST_URI} !(\.css|\.js|\.png|\.jpg|\.gif|robots\.txt)$ [NC]
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
 
-RewriteCond %{REQUEST_FILENAME}  -f
-RewriteRule  ^.*$  -  [L]
 
-RewriteRule ^.*$    index.php [L]
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule \.(css|js|png|jpg|gif|svg|mp4)$ - [L]
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(index\.php|robots\.txt)$ - [L]
+
+RewriteRule ^genres/(.+)/?$ index.php?genres=$1 [L,QSA]
+RewriteRule ^search/(.+)/?$ index.php?search=$1 [L,QSA]
+RewriteRule ^(.+)/?$ index.php?movie=$1 [L,QSA]
