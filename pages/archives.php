@@ -3,24 +3,22 @@
 ///posts?categories=7&orderby=date&per_page=9&_fields=author,id,excerpt,title,link,date,_links
 
 include './videobg.php';
-theNav();
 function archives($genres=null,$page=1)
 {
     $data = array(
         'categories' => $genres,
         'orderby' => 'date',
         'per_page' => 20,
-        'page' => $page,
+        'page' => is_int($page)&&$page>0?$page:1,
         '_fields' => 'id,author,excerpt,content,title,link,date,jetpack_featured_media_url,yoast_head_json', //_links
     );
     $theJson = json_decode(getIt("/posts", $data), true);
     
 
-    ?><div class="container page "><div class="thumbnail_container"><?php
     foreach ($theJson as $key) {
         if($key['jetpack_featured_media_url']!==''){thumbnail($key);};
+        // thumbnail($key);
     }
-    ?></div></div> <?php
 };
 function thumbnail($d)
 {

@@ -13,22 +13,23 @@
     include 'get.php';
     include './head.php';
     include './component/nav.php';
-
+    theNav();
     if (isset($_REQUEST['page'])) {
         $page = test_input($_REQUEST['page']);
         switch ($page) {
             case 'genres':
+                ?><div class="container page "><div class="thumbnail_container"><?php
                 include './pages/archives.php';
-                $genres = @$_REQUEST['id'];
-                $p = @$_REQUEST['p'];
+                $genres = test_input(@$_REQUEST['id']);
+                $p = test_input(@$_REQUEST['p']);
 
                 if (is_numeric($genres)) { //ဂဏန်းဖြစ်ရမည် int ဖြစ်စရာမလို
                     archives($genres,$p);
                 } else {
                     archives();
                 }
+                ?></div></div><?php
                 break;
-
             default:
                 if (is_numeric($page)) { //ဂဏန်းဖြစ်ရမည် int ဖြစ်စရာမလို
                     include './pages/single.php';
@@ -38,9 +39,21 @@
                 }
                 break;
         }
-    } else {
+    }
+    elseif(isset($_REQUEST['search'])){
+        $search = test_input($_REQUEST['search']);
+        $p = test_input(@$_REQUEST['p']);
+        include './pages/search.php';
+        search($search,$p);
+    } 
+    else {
+        //home
         include './pages/archives.php';
-        archives();
+        
+    ?><div class="container page "><div class="thumbnail_container"><?php
+        archives(null,1);
+        archives(null,2);
+        ?></div></div><?php
     }
     // include './pages/single.php';
 ?>

@@ -9,11 +9,22 @@
 
         <link rel="stylesheet" href="style/index.css">
         <meta name="referrer" content="never">
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120150821-4"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-120150821-4');
+        </script>
 
 
 <?php
-function head_Tag($title, $desc, $img = '', $link, $type = 'website')
+function head_Tag($title, $desc, $img = '', $lnk, $type = 'website')
 {
+    $host = 'https://movie.heinsoe.com/';
+    $link = $host.$lnk;
 ?>
    
         <link rel="canonical" href="<?= $link; ?>" />

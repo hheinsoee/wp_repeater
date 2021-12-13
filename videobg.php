@@ -6,7 +6,7 @@
     min-height: 100%;
     z-index: -1;
     object-fit: cover;
-    filter: blur(10px) brightness(0.6);
+    filter: blur(4px) brightness(0.6);
     " autoplay muted loop>
     <source src="./videoplaybackjw.mp4" type="video/mp4">
 </video>
