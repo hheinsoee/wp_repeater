@@ -13,7 +13,8 @@
     include 'get.php';
     include './head.php';
     include './component/nav.php';
-    // theNav();
+    include './function.php';
+    // nav(genresArray());
     if (isset($_REQUEST['page'])) {
         $page = test_input($_REQUEST['page']);
         switch ($page) {

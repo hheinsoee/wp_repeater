@@ -55,23 +55,22 @@ video[poster] {
 }
 
 .nav{
-    position: fixed;
-    left: 0;
-    background: linear-gradient(180deg, black, transparent);
-    right: 0;
-    height: var(--nav-height);
-    z-index: 1;
-    overflow-x:auto;
+    /* position: fixed; */
+    /* left: 0; */
+    /* background: linear-gradient(180deg, black, transparent); */
+    /* right: 0; */
+    /* height: var(--nav-height); */
+    /* z-index: 1; */
+    /* overflow-x:auto; */
 }
 .nav ul{
     list-style: none;
-    display: flex;
     margin: 0;
     padding: 0;
  }
-.page {
+/* .page {
     padding-top: var(--nav-height);
-}
+} */
 .nav ul li {
     margin: 5px 10px;
 }
@@ -99,7 +98,14 @@ video[poster] {
     background-color: #de7700;
     color:#fff;
 }
-
+.archivePage{
+    display:flex;
+}
+.archivePage .nav{
+    position:sticky;
+    top:0;
+    padding:10px;
+}
 @media only screen and (max-width: 800px) {
     .thumbnail {
     display: inline-block;

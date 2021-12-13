@@ -36,7 +36,6 @@ function theNav(){
         setcookie('genres', json_encode($theJson), time() + (86400 * 30), "/"); // 86400 = 1 day
     }
 
-    //12 pr pagge ;
     if(isset($_REQUEST['page'])&&$_REQUEST['page']=='genres'&&isset($_REQUEST['id'])){
         $parPage = 20;
         $currPage = isset($_REQUEST['p'])?$_REQUEST['p']:1;

@@ -22,31 +22,18 @@ function nav($theJson){
     </nav>
     <?php 
     }
+
 function theNav(){
-    $data = array(
-        'per_page' => 50,
-        '_fields' => 'id,count,name,slug', //_links
-    );
-
-    if(isset($_COOKIE['genres'])){
-        $theJson = json_decode($_COOKIE['genres'], true);
-    }
-    else{
-        $theJson = json_decode(getIt("/categories", $data), true);
-        setcookie('genres', json_encode($theJson), time() + (86400 * 30), "/"); // 86400 = 1 day
-    }
-
     if(isset($_REQUEST['page'])&&$_REQUEST['page']=='genres'&&isset($_REQUEST['id'])){
         $parPage = 20;
         $currPage = isset($_REQUEST['p'])?$_REQUEST['p']:1;
-        $offset = array_search($_REQUEST['id'], array_column($theJson, 'id'));
-        $currentgenres = $theJson[$offset];
+        $offset = array_search($_REQUEST['id'], array_column(genresArray(), 'id'));
+        $currentgenres = genresArray()[$offset];
         $count = $currentgenres['count'];
         $name = $currentgenres['name'];
         $descr ='';
         $link = "?page=genres&id={$_REQUEST['id']}&p={$currPage}";
-        head_Tag($name.' ဇာတ်ကားများ',$descr,null,$link,'website');
-        nav($theJson);
+        // head_Tag($name.' ဇာတ်ကားများ',$descr,null,$link,'website');
         ?>
 
         <br/>
@@ -59,8 +46,6 @@ function theNav(){
         ?></div>
         <?php
     }
-    else{
-        nav($theJson);
-    }
 }
+
 ?>

@@ -21,22 +21,34 @@ function archives($genres = null, $page = 1)
 
 
     //add html head
-    //head tag အတွက် theNav ကလုပ်ပါလိမ်မေ
-    
-    //add nav
-    theNav();
-    //add body
+    //head tag 
+    head_Tag('Free ဇာတ်ကားများ', 'Free ဇာတ်ကားများ', null, null, 'website');
+
+
     include './component/videobg.php';
     include './component/thumbnail.php';
-    
-    ?><div class="container page "><div class="thumbnail_container"><?php
-    foreach ($theJson as $key) {
-        if ($key['jetpack_featured_media_url'] !== '') {
-            thumbnail($key);
-        };
-    }
-    ?></div></div><?php
-    
+?>
+    <div class="archivePage">
+        <div>
+            <?php
+            nav(genresArray());
+            ?>
+        </div>
+        <div class="container page ">
+            <?php theNav(); ?>
+            <div class="thumbnail_container">
+                <?php
+                foreach ($theJson as $key) {
+                    if ($key['jetpack_featured_media_url'] !== '') {
+                        thumbnail($key);
+                    };
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+<?php
+
 
 
 

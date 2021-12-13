@@ -55,7 +55,7 @@ function videoplayer($p_link, $v_link, $theJson)
         "?page={$theJson['id']}",
         'video'
     );
-    theNav();
+    // nav(genresArray());
 ?>
     <div style="
         background-image:url(<?= $p_link ?>);

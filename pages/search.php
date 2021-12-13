@@ -2,7 +2,7 @@
 //genres
 ///posts?categories=7&orderby=date&per_page=9&_fields=author,id,excerpt,title,link,date,_links
 
-// theNav();
+// nav(genresArray());;
 function search($search = null, $page = 1)
 {
     $data = array(
@@ -23,7 +23,7 @@ function search($search = null, $page = 1)
         "?search={$search}",
         'website'
     );
-    theNav();
+    nav(genresArray());
     include './component/videobg.php';
 ?>
     <div class="container page ">
