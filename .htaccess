@@ -10,6 +10,4 @@ RewriteRule \.(css|js|png|jpg|gif|svg|mp4)$ - [L]
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule ^(index\.php|robots\.txt)$ - [L]
 
-RewriteRule ^genres/(.+)/?$ index.php?genres=$1 [L,QSA]
-RewriteRule ^search/(.+)/?$ index.php?search=$1 [L,QSA]
-RewriteRule ^(.+)/?$ index.php?movie=$1 [L,QSA]
+RewriteRule ^(.+)/?$ index.php?$1 [L,QSA]

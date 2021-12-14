@@ -25,16 +25,16 @@ function archives($genres = null, $page = 1)
 
     include './component/videobg.php';
     include './component/thumbnail.php';
-    
+
     include './component/search.php';?>
     <div class="archivePage">
         <div>
             <?php
-            nav(genresArray());
+            nav(genresArray(),$genres);
             ?>
         </div>
         <div class="container page ">
-            <?php theNav(); ?>
+            <?php theNav($genres); ?>
             <div class="thumbnail_container">
                 <?php
                 foreach ($theJson as $key) {
@@ -44,6 +44,7 @@ function archives($genres = null, $page = 1)
                 }
                 ?>
             </div>
+            <?php theNav($genres); ?>
         </div>
     </div>
 <?php
